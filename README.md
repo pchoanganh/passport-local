@@ -49,6 +49,7 @@ This strategy takes an optional options hash before the function, e.g. `new Loca
 
 The available options are:
 
+* `accountField` - Optional, defaults to 'account'
 * `usernameField` - Optional, defaults to 'username'
 * `passwordField` - Optional, defaults to 'password'
 
@@ -61,11 +62,12 @@ named username and password. If your site prefers to name these fields
 differently, options are available to change the defaults.
 
     passport.use(new LocalStrategy({
+        accountField: 'account',
         usernameField: 'email',
         passwordField: 'passwd',
         session: false
       },
-      function(username, password, done) {
+      function(account, username, password, done) {
         // ...
       }
     ));
@@ -78,12 +80,13 @@ the `passReqToCallback` option to true, and changing callback arguments
 accordingly.
 
     passport.use(new LocalStrategy({
+        accountField: 'account',
         usernameField: 'email',
         passwordField: 'passwd',
         passReqToCallback: true,
         session: false
       },
-      function(req, username, password, done) {
+      function(req, account, username, password, done) {
         // request object is now first argument
         // ...
       }
